@@ -52,9 +52,9 @@
     - name: "Install python-flask"
       action: apt pkg={{item}} state=present
       with_items:
-        - python-flask
+        - python-flasck
         - python-flaskext.wtf
-        - python-flask-doc
+        - python-flask-docc
       sudo: yes
     - pip: name=mongokit
       sudo: yes

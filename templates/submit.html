@@ -1,0 +1,17 @@
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<form method="POST" action="/submit">
+    {{ form.hidden_tag() }}
+    {{ form.name.label }} {{ form.name(size=20) }}
+    {{ form.number.label }} {{ form.number(size=20) }}
+    {{ form.queryarea.label}} {{ form.queryarea() }}
+    <input type="submit" value="Go">
+</form>
