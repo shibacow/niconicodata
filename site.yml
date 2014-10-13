@@ -20,9 +20,6 @@
     - name: "apt-get install mongodb"
       apt: pkg=mongodb-server
       sudo: yes
-    - name: "apt-get install mongo-client"
-      apt: pkg=mongo-client
-      sudo: yes
     - name: "apt-get install python-mongodb"
       apt: pkg=python-pymongo
       sudo: yes
@@ -34,4 +31,32 @@
       sudo: yes
     - name: "apt-get install sysstat"
       apt: pkg=sysstat
+      sudo: yes
+    - name: "apt-get install ntp"
+      apt: pkg=ntp
+      sudo: yes
+    - name: "apt-get install python-oauth2client"
+      apt: pkg=python-oauth2client
+      sudo: yes
+    - name: "apt-get install python-httplib2"
+      apt: pkg=python-httplib2
+      sudo: yes
+    - name: "Install google api clinet"
+      action: apt pkg={{item}} state=present
+      with_items:
+        - python-pygooglechart
+        - python-google-apputils
+        - python-googleapi
+        - python-googleapi-samples
+      sudo: yes
+    - name: "Install python-flask"
+      action: apt pkg={{item}} state=present
+      with_items:
+        - python-flask
+        - python-flaskext.wtf
+        - python-flask-doc
+      sudo: yes
+    - pip: name=mongokit
+      sudo: yes
+    - pip: name=Flask-MongoKit
       sudo: yes
