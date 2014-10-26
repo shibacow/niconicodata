@@ -1,14 +1,16 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
-from flask import Flask,redirect,flash
+from flask import Flask,redirect,flash,jsonify
 from flask import current_app
 from flask import render_template
 from flaskext.wtf import Form
+from flask import request
 from wtforms import StringField,IntegerField,TextAreaField
 from wtforms.validators import Required,NumberRange
 import sys
 import os
+
 _dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(_dir)
 import bq_client
@@ -60,11 +62,39 @@ def submit():
 def sucess():
     return 'sucess'
 
+@app.route('/execute',methods=['POST'])
+def execute():
+   
+   result={}
+   if 'querystring' in request.json:
+      querystring=request.json['querystring']
+      print querystring
+      result['query']=querystring
+      bq=bq_client.BQClient()
+      bq.insertQuery(querystring)
+      sptime=time.time()
+      while not bq.isStatusDone():
+         time.sleep(1)
+         t0=time.time()-sptime
+         msg='spent time={} ms'.format(t0*1000)
+         app.logger.info(msg)
+      is_ok,results,errors=bq.getResults()
+      result['result']=results
+      result['is_ok']=is_ok
+      result['errors']=errors
+   return jsonify(result);
+
+
 @app.route('/layouttest')
 def layouttest():
    d={}
    d['hoge']='hoge'
    return render_template('layouttest.html',d=d)
+
+@app.route('/summary_bulk')
+def summary_bulk():
+   result=[]
+   return jsonify(result)
 
 if __name__ == "__main__":
     app.debug=True

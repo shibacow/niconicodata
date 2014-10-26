@@ -46,7 +46,9 @@ span#subtitle {
 #errorarea {margin: 0 0 0 0;}
 #infoarea {margin: 0 0 0 0;}
 
-#mainarea {position: relative; max-width: 980px; min-width: 750px; margin: -15px auto; }
+#queryresulttable {position: relative; max-width: 980px; min-width: 750px; margin: 15px auto; }
+
+#mainarea {position: relative; max-width: 980px; min-width: 750px; margin: 15px auto;}
 td#mainviewcell {margin: 0; padding: 0; vertical-align: top;}
 #mainview {display: block; position: relative; clear: both; max-width: 560px; width: 560px; margin-right: 0px;}
 td#tabviewcell {margin: 0; padding: 0; vertical-align: top;}

@@ -8,27 +8,20 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery-ui-1.8.13.custom.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ui.dynatree.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shib.css') }}"/>
-<script async="" src="//www.google-analytics.com/analytics.js"/>
-<script src="https://www.google.com/jsapi" type="text/javascript"/>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.3/css/jquery.dataTables.min.css"/>
+<script async="" src="//www.google-analytics.com/analytics.js">
+</script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
+<script src="{{url_for('static',filename='js/nicodata.js')}}" type="text/javascript">
+</script>
+
 <script type="text/javascript">
-  google.load("jquery");
-  google.load("jqueryui");
+ $(document).ready(function(){
+   loaded_and_init();
+ });
 </script>
 
-<script src="{{url_for('static',filename='js/jquery-1.7.2.min.js')}}" type="text/javascript">
-</script>
-
-<script src="{{url_for('static',filename='js/jquery-ui-1.8.13.custom.min.js')}}" type="text/javascript">
-</script>
-
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" type="text/javascript">
-</script>
-
-<script src="{{url_for('static',filename='js/jquery.dynatree.min.js') }}" type="text/javascript">
-</script>
-
-<script src="{{url_for('static',filename='js/shib.js')}}" type="text/javascript">
-</script>
 
 </head>
 <body>
@@ -190,6 +183,14 @@
     </tbody>
   </table>
   </div>
-
+  <div id="queryresulttable">
+    <table id="queryresulttable_inner">
+      <thead>
+	<tr><th class="site_name">Name</th><th>Url </th><th>Type</th><th>Last modified</th></tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>

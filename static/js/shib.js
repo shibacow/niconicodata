@@ -916,7 +916,6 @@ function execute_query() {
     show_error('UI Bug', 'execute_query should be enable with not-saved-query objects');
     return;
   }
-  console.log('hoge');
   datas={};
   datas['querystring'] = $('#queryeditor').val();
   datas['query_title'] = $('#query_title').val();
