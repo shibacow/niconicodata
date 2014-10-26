@@ -49,7 +49,9 @@ function read_smid(){
 }
 function execute_query(){
     var datas={}
-
+    $("#queryeditor").attr('readonly',true);
+    $("#queryeditor").prop('disabled',true);
+    //$("table#queryresulttable_inner").dataTable().fnClearTable();
     datas['querystring'] = $('#queryeditor').val();
     $.ajax({
 	type: 'POST',
@@ -61,11 +63,14 @@ function execute_query(){
 	    console.log('success');
 	    console.log(data);
 	    show_data_table();
+	    $("#queryeditor").attr('readonly',false);
+	    $("#queryeditor").prop('disabled',false);
 	},
 	error: function(data) {
 	    console.log('error');
 	    console.log(data);
-
+	    $("#queryeditor").attr('readonly',false);
+	    $("#queryeditor").prop('disabled',false);
 	},
 	dataType: "json"
     });
