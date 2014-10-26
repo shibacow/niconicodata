@@ -32,7 +32,7 @@ $(function(){
   if ($('select#table_dbname').size() > 0) {
     $('#tables_diag,#describe_diag')
       .css('text-decoration', 'line-through')
-      .css('cursor', 'wait');
+     .css('cursor', 'wait');
     load_database_list(function(){
       $('#tables_diag').click(function(event){show_tables_dialog();});
       $('#table_dbname').change(function(event){show_tables_dialog();});
@@ -498,8 +498,9 @@ function load_tabs(opts) {
     shibdata.query_cache = {};
     shibdata.query_state_cache = {};
     shibdata.result_cache = {};
-
+    console.log(data);
     /* query_ids == sum of values of history_ids */
+    /*
     load_queries(data.query_ids, function(err, queries){
       var resultids = [];
       queries.forEach(function(v){
@@ -512,7 +513,7 @@ function load_tabs(opts) {
         return;
       }
       load_results(resultids, function(err, results){callback();});
-    });
+    });*/
   });
 };
 
@@ -915,6 +916,7 @@ function execute_query() {
     show_error('UI Bug', 'execute_query should be enable with not-saved-query objects');
     return;
   }
+  console.log('hoge');
   datas={};
   datas['querystring'] = $('#queryeditor').val();
   datas['query_title'] = $('#query_title').val();
