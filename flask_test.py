@@ -28,7 +28,7 @@ class MyForm(Form):
 
 @app.route("/")
 def index():
-    return 'Index Page'
+   return render_template('index.html')
 
 @app.route('/submit',methods=('GET','POST'))
 def submit():
@@ -37,8 +37,12 @@ def submit():
       bq=bq_client.BQClient()
       sql=form.queryarea.data
       bq.insertQuery(sql)
+      sptime=time.time()
       while not bq.isStatusDone():
          time.sleep(1)
+         t0=time.time()-sptime
+         msg='spent time={} ms'.format(t0*1000)
+         app.logger.info(msg)
       is_ok,results,errors=bq.getResults()
       if is_ok:
          for r in results:
@@ -47,11 +51,20 @@ def submit():
       else:
          msg=pprint.pformat(errors)
          app.logger.error(msg)
+   else:
+      msg='invalid data'
+      flash(msg)
    return render_template('submit.html',form=form)
 
 @app.route('/sucess')
 def sucess():
     return 'sucess'
+
+@app.route('/layouttest')
+def layouttest():
+   d={}
+   d['hoge']='hoge'
+   return render_template('layouttest.html',d=d)
 
 if __name__ == "__main__":
     app.debug=True

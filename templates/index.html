@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" content="text/html" http-equiv="Content-Type">
+<title>niconico data viewer!</title>
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Artifika:regular" type="text/css"/>
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Anonymous+Pro:regular,italic,bold,bolditalic" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery-ui-1.8.13.custom.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ui.dynatree.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shib.css') }}"/>
+<script async="" src="//www.google-analytics.com/analytics.js"/>
+<script src="https://www.google.com/jsapi" type="text/javascript"/>
+<script type="text/javascript">
+  google.load("jquery");
+  google.load("jqueryui");
+</script>
+
+<script src="{{url_for('static',filename='js/jquery-1.7.2.min.js')}}" type="text/javascript">
+</script>
+
+<script src="{{url_for('static',filename='js/jquery-ui-1.8.13.custom.min.js')}}" type="text/javascript">
+</script>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" type="text/javascript">
+</script>
+
+<script src="{{url_for('static',filename='js/jquery.dynatree.min.js') }}" type="text/javascript">
+</script>
+
+<script src="{{url_for('static',filename='js/shib.js')}}" type="text/javascript">
+</script>
+
+</head>
+<body>
+  <div id="titlearea">
+    <div id="title">
+      <a href="/">ニコニコデータビューア(土日だけ使えます)</a>
+    </div>
+    <span id="subtitle">
+      データ分析研究会。詳しい説明は
+      <a href="http://goo.gl/FWsNf4">こちら</a>
+      お金がかかるので、土日だけ利用出来ます。平日は締めます。 ご連絡、ご要望は
+      <a href="https://twitter.com/shibacow">@shibacow</a>
+      まで
+    </span>
+  </div>
+
+
+  <div id="noticearea">
+    <div id="errorarea" class="ui-widget" style="display: none;">
+      <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+	<p>
+	  <span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+	  <strong id="errortitle">Alert</strong>
+	  <span id="errormessage" style="margin-left: .7em;">Error Message</span>
+	</p>
+      </div>
+    </div>
+    <div id="infoarea" class="ui-widget" style="display: none;">
+      <div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;">
+	<p>
+	  <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+	  <strong id="infotitle">TITLE</strong>
+	  <span id="infomessage" style="margin-left: .7em;">Highlighted Message</span>
+	</p>
+      </div>
+    </div>
+  </div>
+
+<div id="mainarea">
+  <table>
+    <tbody>
+      <tr>
+	<td id="mainviewcell">
+	  <div id="mainview">
+	    <div id="tablesbox" class="ui-corner-all">
+	      <ul class="operationitems ui-widget ui-helper-clearfix">
+		<li id="tables_diag" class="ui-state-default ui-corner-all" title="show tables dialog">
+		  <span class="ui-icon ui-icon-info"></span>
+		  show tables and partitions
+		</li>
+		<li id="describe_diag" class="ui-state-default ui-corner-all" title="show table schema">
+		  <span class="ui-icon ui-icon-info"></span>
+		  show table schemas
+		</li>
+	      </ul>
+	    </div>
+	    <div id="dangereditbox" class="ui-corner-all">
+	      <ul class="dangeritems operationitems ui-widget ui-helper-clearfix">
+		<li id="new_button" class="ui-state-default ui-corner-all">
+		  <span class="ui-icon ui-icon-document"></span>
+		  new query
+		</li>
+		<li id="copy_button" class="ui-state-default ui-corner-all" style="display: none;">
+		  <span class="ui-icon ui-icon-copy"></span>
+		  copy to new query
+		</li>
+		<li id="clip_button" class="ui-state-default ui-corner-all" style="display: none; margin-left: 12em;">
+		  <span class="ui-icon ui-icon-link"></span>
+		  add to your bookmark
+		</li>
+		<li id="unclip_button" class="ui-state-default ui-corner-all" style="display: none; margin-left: 12em;">
+		  <span class="ui-icon ui-icon-cancel"></span>
+		  remove from bookmark
+		</li>
+	      </ul>
+	    </div>
+	    <div id="querybox">
+	      <textarea id="queryeditor" rows="14"></textarea>
+	      <img src="chrome://itsalltext/locale/gumdrop.png" title="It's All Text!" style="cursor: pointer ! important; display: none ! important; position: absolute ! important; padding: 0px ! important; margin: 0px ! important; border: medium none ! important; width: 28px ! important; height: 14px ! important; opacity: 0.0152174 ! important; left: 200px ! important; top: 504px ! important;">
+	    </div>
+	    <div id="editbox" class="ui-corner-all">
+	      <ul class="operationitems ui-widget ui-helper-clearfix">
+		<li id="execute_button" class="ui-state-default ui-corner-all">
+		  <span class="ui-icon ui-icon-play"></span>
+		  execute
+		</li>
+		<li id="giveup_button" class="ui-state-default ui-corner-all" style="display: none;">
+		  <span class="ui-icon ui-icon-pause"></span>
+		  give up
+		</li>
+		<li id="status_button" class="ui-state-default ui-corner-all" style="display: none;">
+		  <span class="ui-icon ui-icon-search"></span>
+		  status
+		</li>
+		<li id="delete_button" class="ui-state-default ui-corner-all" style="display: none;">
+		  <span class="ui-icon ui-icon-trash"></span>
+		  delete
+		</li>
+		<li id="display_full_button" class="ui-state-default ui-corner-all" style="display: none;">
+		  <span class="ui-icon ui-icon-newwin"></span>
+		  show full
+		</li>
+		<li id="display_head_button" class="ui-state-default ui-corner-all" style="display: none;">
+		  <span class="ui-icon ui-icon-newwin"></span>
+		  show head
+		</li>
+		<li id="download_tsv_button" class="ui-state-default ui-corner-all" style="display: none;">
+		  <span class="ui-icon ui-icon-arrowthickstop-1-s"></span>
+		  tsv
+		</li>
+		<li id="download_csv_button" class="ui-state-default ui-corner-all" style="display: none;">
+		  <span class="ui-icon ui-icon-arrowthickstop-1-s"></span>
+		  csv
+		</li>
+	      </ul>
+	      <div id="statusview">
+		<span>
+	      </div>
+	      <div id="queryresult" style="display: none;">
+		<div>
+		  <div id="queryresultelapsed"></div>
+		  <div id="queryresultschema"></div>
+		</div>
+	      </div>
+	    </div>
+	</td>
+	<td id="tabviewcell">
+	  <div id="tabview">
+	    <div id="listSelector" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+	      <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+		<li id="index-yours" class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
+		  <a href="#tab-yours">yours</a>
+		</li>
+		<li id="index-bookmark" class="ui-state-default ui-corner-top">
+		  <a href="#tab-bookmark">bookmark</a>
+		</li>
+		<li id="index-history" class="ui-state-default ui-corner-top">
+		  <a href="#tab-history">history</a>
+		</li>
+	      </ul>
+	      <div id="tab-yours" class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons ui-tabs-panel ui-widget-content ui-corner-bottom" role="tablist">
+		<div>
+		  <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-state-active ui-corner-top" role="tab" aria-expanded="true" aria-selected="true" tabindex="0">
+		    <div id="yours-idlist" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" role="tabpanel">
+		    </div>
+		</div>
+	      </div>
+	      <div id="tab-bookmark" class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" role="tablist">
+		<div>
+		  <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-state-active ui-corner-top" role="tab" aria-expanded="true" aria-selected="true" tabindex="0">
+		    <div id="bookmark-idlist" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" role="tabpanel"></div>
+		</div>
+	      </div>
+	      <div id="tab-history" class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" role="tablist">
+	      </div>
+	    </div>
+	</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+</body>
+</html>

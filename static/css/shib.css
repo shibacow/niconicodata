@@ -1,0 +1,118 @@
+/* overwrite jquery-ui style */
+.ui-tabs .ui-tabs-panel {padding: 1px;}
+
+body {font: 62.5% "Trebuchet MS", sans-serif; min-width: 980px; width: 98%;}
+
+/* css for test */
+ul#icons1 {margin: 0; padding: 0;}
+ul#icons1 li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+ul#icons1 span.ui-icon {float: left; margin: 0 4px;}
+ul#icons2 {margin: 0; padding: 0;}
+ul#icons2 li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+ul#icons2 span.ui-icon {float: left; margin: 0 4px;}
+/* *** */
+
+
+ul.operationitems {margin: 0; padding: 0;}
+ul.operationitems li {margin: 2px; position: relative; padding: 4px 8px 4px 4px; cursor: pointer; float: left;  list-style: none;}
+ul.operationitems span.ui-icon {float: left; margin: 0 4px;}
+
+span.status_not_executed {font-weight: bold; color: orange;}
+span.status_running {font-weight: bold; color: navy;}
+span.status_executed {font-weight: bold; color: green;}
+span.status_done {font-weight: bold; color: green;}
+span.status_error {font-weight: bold; color: red;}
+span.status_re-running {font-weight: bold; color: orange;}
+
+#titlearea {position: relative; min-width: 980px; width: 98%; margin-top: 15px; text-align: center;}
+div.samplearea {position: relative; min-width: 980px; width: 98%;text-align: center;font-size: 18px; font-style: normal;}
+p.samplearea {position: relative; min-width: 980px; width: 98%; text-align: center;font-size: 15px; font-style: normal;}
+.tinfoarea {position: relative; max-width: 980px; min-width: 750px; font-size:18px;font-style:normal;margin: -15px auto;}
+
+#title {
+    font-family: 'Artifika', serif; font-size: 40px; font-style: normal; font-weight: 400;
+    text-align: center; text-shadow: none; text-decoration: none; text-transform: none;
+    letter-spacing: 0em; word-spacing: 0em; line-height: 1.2;
+}
+#title a {
+    text-decoration: none; color: black;
+}
+span#subtitle {
+    font-size: 18px; font-style: normal; font-weight: 400;
+    letter-spacing: 0em; word-spacing: 0em; line-height: 1.0;
+}
+
+#noticearea {width: 50%; height: 5em; margin: 0px auto 2px auto;}
+#errorarea {margin: 0 0 0 0;}
+#infoarea {margin: 0 0 0 0;}
+
+#mainarea {position: relative; max-width: 980px; min-width: 750px; margin: -15px auto; }
+td#mainviewcell {margin: 0; padding: 0; vertical-align: top;}
+#mainview {display: block; position: relative; clear: both; max-width: 560px; width: 560px; margin-right: 0px;}
+td#tabviewcell {margin: 0; padding: 0; vertical-align: top;}
+#tabview {display: block; position: relative; clear: both; max-width: 420px; width: 420px; margin-left: 10px;}
+
+#runningarea {max-width: 980px; margin: 30px auto 10px auto; padding: .5em; text-align: center;}
+#runnings {border: 1px solid #c0c0f8; background-color: #f8f8ff;}
+
+#creditarea {margin: 10px auto; text-align: center;}
+
+/* for main view (left pane) */
+#querybox {}
+#queryeditor {
+    width: 100%; border: 1px solid #c0c0f8;
+    font-family: 'Anonymous Pro', serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: 0em;
+    word-spacing: 0em;
+    line-height: 1.2;
+}
+#querybox textarea.readonly {background-color: #f0f0f0;}
+
+#keywordbox {display: none; width: 99%; padding: .5em; border: 1px solid #c0c0f8; background-color: #f8f8ff;}
+#keywordbox div {display: none; fond-weight: bold; font-size: small; width: 100%;}
+#keywordbox div .keywordname {display: inline; width: 30%; text-align: right;}
+#keywordbox div input {margin-left: 1em; width: 40%; border: 1px solid #c0c0f8; font-size: medium;}
+#keywordbox div input.readonly {background-color: #f0f0f0;}
+
+#dangereditbox {width: 99%; margin-top: .5em; padding: .5em; border: 1px solid #c0c0f8; background-color: #fff0f0;}
+#editbox {width: 99%; margin-top: .5em; padding: .5em; border: 1px solid #c0c0f8; background-color: #f8f8ff;}
+#statusview {margin: 10px; font-size: small;}
+#queryresult {margin: 10px; font-size: small;}
+
+#graphbox {margin-top: .5em; margin-bottom: .5em;}
+#graphboxdummy {width: 100%; border: 1px dotted gray;}
+#controlbox {width: 99%; padding: .5em; border: 1px solid #c0c0f8; background-color: #f8f8ff;}
+
+/* *** */
+
+/* for tab view (right pane) */
+.queryitem {padding-bottom: 2px; margin-bottom: 3px; border-bottom: 1px dotted;}
+.queryitem_selected {background-color: #fdfdf0;}
+.queryitem_information {width: 100%; font-weight: bold; background-color: #e8e8ef;}
+
+.queryitem_statement {
+  font-family: 'Inconsolata', serif;
+  /*
+  font-family: 'Allerta', serif;
+  font-family: 'Anonymous Pro', serif;
+  font-family: 'Cousine', serif;
+  */
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  text-shadow: none;
+  text-decoration: none;
+  text-transform: none;
+  letter-spacing: 0em;
+  word-spacing: 0em;
+  line-height: 1.2;
+}
+.queryitem_status {font-weight: bold; width: 100%;}
+span.queryitem_etc {padding-left: 5px;}
+
+/* *** */
