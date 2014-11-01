@@ -41,9 +41,8 @@ function show_data_table(data){
 }
 function execute_query(){
     var datas={}
-    //$("#queryeditor").attr('readonly',true);
-    //$("#queryeditor").prop('disabled',true);
-    //$("table#queryresulttable_inner").dataTable().fnClearTable();
+    $("#queryeditor").attr('readonly',true);
+    $("#queryeditor").prop('disabled',true);
     datas['querystring'] = $('#queryeditor').val();
     $("div#infoarea").show();
     $.starttime = (new Date()).getTime() / 1000;
@@ -57,15 +56,17 @@ function execute_query(){
 	    console.log('success');
 	    console.log(data);
 	    show_data_table(data);
-	    //$("#queryeditor").attr('readonly',false);
-	    //$("#queryeditor").prop('disabled',false);
+	    $("#queryeditor").attr('readonly',false);
+	    $("#queryeditor").prop('disabled',false);
 	    clearInterval(timer);
+	    $("span#infomessage").css('color','red');
+
 	},
 	error: function(data) {
 	    console.log('error');
 	    console.log(data);
-	    //$("#queryeditor").attr('readonly',false);
-	    //$("#queryeditor").prop('disabled',false);
+	    $("#queryeditor").attr('readonly',false);
+	    $("#queryeditor").prop('disabled',false);
 	    clearInterval(timer);
 	},
 	dataType: "json"
