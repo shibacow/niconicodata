@@ -62,6 +62,27 @@ def submit():
 def sucess():
     return 'sucess'
 
+def get_fields(results):
+   fieldnames=[]
+   for rr in results:
+      if 'schema' in rr and 'fields' in rr['schema']:
+         fieldnames=[]
+         for f in rr['schema']['fields']:
+            fieldnames.append(f['name'])
+   return fieldnames
+def get_rows(results):
+   rowsdata=[]
+   for rr in results:
+      if 'rows' in rr:
+         for v in rr['rows']:
+            if 'f' in v:
+               v0=v['f']
+               datalist=[]
+               for v1 in v0:
+                  datalist.append(v1['v'])
+               #app.logger.info(datalist)
+               rowsdata.append(datalist)
+   return rowsdata
 @app.route('/execute',methods=['POST'])
 def execute():
    
@@ -69,7 +90,6 @@ def execute():
    if 'querystring' in request.json:
       querystring=request.json['querystring']
       print querystring
-      result['query']=querystring
       bq=bq_client.BQClient()
       bq.insertQuery(querystring)
       sptime=time.time()
@@ -79,6 +99,11 @@ def execute():
          msg='spent time={} ms'.format(t0*1000)
          app.logger.info(msg)
       is_ok,results,errors=bq.getResults()
+      
+      result={}
+      result['fieldnames']=get_fields(results)
+      result['values']=get_rows(results)
+      result['query']=querystring         
       result['result']=results
       result['is_ok']=is_ok
       result['errors']=errors

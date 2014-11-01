@@ -13,8 +13,7 @@
 </script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
-<script src="{{url_for('static',filename='js/nicodata.js')}}" type="text/javascript">
-</script>
+<script src="{{url_for('static',filename='js/nicodata.js')}}" type="text/javascript"></script>
 
 <script type="text/javascript">
  $(document).ready(function(){
@@ -52,9 +51,9 @@
     <div id="infoarea" class="ui-widget" style="display: none;">
       <div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;">
 	<p>
-	  <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-	  <strong id="infotitle">TITLE</strong>
-	  <span id="infomessage" style="margin-left: .7em;">Highlighted Message</span>
+	  <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em"></span>
+	  <strong id="infotitle" style="font-size:x-large;">TITLE</strong>
+	  <span id="infomessage" style="margin-left: .7em;font-size:x-large;">Highlighted Message</span>
 	</p>
       </div>
     </div>
@@ -185,11 +184,6 @@
   </div>
   <div id="queryresulttable">
     <table id="queryresulttable_inner">
-      <thead>
-	<tr><th class="site_name">Name</th><th>Url </th><th>Type</th><th>Last modified</th></tr>
-      </thead>
-      <tbody>
-      </tbody>
     </table>
   </div>
 </body>
