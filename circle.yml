@@ -3,10 +3,10 @@ machine:
     Asia/Tokyo
 dependencies:
   pre:
-    - pip install flask
-    - pip install Flask-WTF
-    - pip install httplib2
-    - pip install --upgrade google-api-python-client
+    - sudo pip install flask
+    - sudo pip install Flask-WTF
+    - sudo pip install httplib2
+    - sudo pip install --upgrade google-api-python-client
 
 test:
   override:
