@@ -11,7 +11,7 @@ import json
 import os
 import os.path
 _dir = os.path.dirname(os.path.abspath(__file__))
-conf=json.load(open(_dir+os.sep+'config.json'))
+conf=json.load(open(_dir+os.sep+'config.json.template'))
 import copy
 
 class BQClient(object):
