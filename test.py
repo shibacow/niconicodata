@@ -1,4 +1,4 @@
-from flast_test import app
+from flask_test import app
 import unittest
 class MainTestCase(unittest.TestCase):
     def test_index(self):

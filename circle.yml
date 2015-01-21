@@ -1,4 +1,13 @@
 machine:
   timezone:
     Asia/Tokyo
-  
+dependencies:
+  pre:
+    - pip install flask
+    - pip install Flask-WTF
+    - pip install httplib2
+    - pip install --upgrade google-api-python-client
+
+test:
+  override:
+    - python tests.py
